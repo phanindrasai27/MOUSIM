@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work Ethics Today | The Digital Worker's Guide</title>
+    <title>Code Chronicles | Modern Web Development</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,10 +12,10 @@
         }
         
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Fira Code', monospace;
             line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            color: #e0e0e0;
+            background-color: #1a1a1a;
             overflow-x: hidden;
         }
         
@@ -25,8 +25,8 @@
             width: 320px;
             right: -320px;
             top: 0;
-            background-color: #fff;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #2d2d2d;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
             transition: right 0.3s ease;
             z-index: 1000;
             padding: 20px;
@@ -43,12 +43,13 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #444;
         }
         
         .sidebar-title {
             font-size: 1.2rem;
             font-weight: bold;
+            color: #61dafb;
         }
         
         .close-sidebar {
@@ -56,11 +57,14 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #777;
+            color: #888;
         }
         
         .control-section {
             margin-bottom: 30px;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
         }
         
         .section-title {
@@ -68,7 +72,8 @@
             font-weight: bold;
             margin-bottom: 15px;
             padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #444;
+            color: #61dafb;
         }
         
         .control-group {
@@ -80,15 +85,18 @@
             margin-bottom: 5px;
             font-weight: bold;
             font-size: 0.9rem;
+            color: #ddd;
         }
         
         select, input {
             width: 100%;
             padding: 8px 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #555;
             border-radius: 4px;
             font-size: 0.9rem;
             margin-bottom: 10px;
+            background-color: #2d2d2d;
+            color: #fff;
         }
         
         .btn {
@@ -103,21 +111,21 @@
         }
         
         .btn-start {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #61dafb;
+            color: #1a1a1a;
         }
         
         .btn-start:hover {
-            background-color: #3e8e41;
+            background-color: #4fa8d1;
         }
         
         .btn-stop {
-            background-color: #f44336;
+            background-color: #e06c75;
             color: white;
         }
         
         .btn-stop:hover {
-            background-color: #d32f2f;
+            background-color: #be5860;
         }
         
         .status-indicator {
@@ -129,30 +137,31 @@
         }
         
         .status-active {
-            background-color: #c8e6c9;
-            color: #2e7d32;
+            background-color: #2ea043;
+            color: #fff;
         }
         
         .status-inactive {
-            background-color: #ffcdd2;
-            color: #c62828;
+            background-color: #da3633;
+            color: #fff;
         }
         
         .log-section {
             max-height: 300px;
             overflow-y: auto;
-            border: 1px solid #eee;
+            border: 1px solid #444;
             border-radius: 4px;
             padding: 10px;
-            background-color: #f9f9f9;
+            background-color: #2d2d2d;
         }
         
         .log-entry {
             margin-bottom: 5px;
             padding-bottom: 5px;
-            border-bottom: 1px dotted #eee;
-            font-family: monospace;
+            border-bottom: 1px dotted #444;
+            font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
+            color: #98c379;
         }
         
         .toggle-sidebar {
@@ -162,8 +171,8 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #555;
-            color: white;
+            background-color: #61dafb;
+            color: #1a1a1a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -175,7 +184,7 @@
         }
         
         .toggle-sidebar:hover {
-            background-color: #333;
+            background-color: #4fa8d1;
         }
         
         .container {
@@ -197,13 +206,13 @@
         .blog-title {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            color: #333;
+            color: #61dafb;
         }
         
         .blog-subtitle {
             font-size: 1.2rem;
-            color: #666;
-            font-style: italic;
+            color: #98c379;
+            font-family: 'Fira Code', monospace;
         }
         
         .blog-meta {
@@ -216,35 +225,29 @@
             font-size: 1.8rem;
             margin-top: 40px;
             margin-bottom: 20px;
-            color: #444;
-            border-bottom: 2px solid #eee;
+            color: #61dafb;
+            border-bottom: 2px solid #333;
             padding-bottom: 10px;
         }
         
         .blog-content p {
             margin-bottom: 20px;
             font-size: 1.1rem;
+            color: #e0e0e0;
         }
         
-        .blog-content blockquote {
-            border-left: 4px solid #ccc;
-            padding-left: 20px;
-            margin-left: 0;
-            color: #555;
-            font-style: italic;
-            margin-bottom: 20px;
+        .code-block {
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
         }
         
-        .blog-image {
-            width: 100%;
-            height: 300px;
-            background-color: #eee;
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #999;
-            font-style: italic;
+        .code-block pre {
+            margin: 0;
+            font-family: 'Fira Code', monospace;
+            color: #98c379;
         }
         
         @media (max-width: 768px) {
@@ -305,83 +308,95 @@
     
     <div class="container" id="container">
         <div class="blog-header">
-            <h1 class="blog-title">The Ethical Worker's Guide to Productivity</h1>
-            <div class="blog-subtitle">Finding the balance between productivity tools and genuine work</div>
-            <div class="blog-meta">Posted on March 1, 2025 by Alex Johnson • 12 min read</div>
+            <h1 class="blog-title">Modern Web Development</h1>
+            <div class="blog-subtitle">Exploring React Hooks and State Management</div>
+            <div class="blog-meta">Posted on March 15, 2024 by DevMaster • 15 min read</div>
         </div>
         
         <div class="blog-content">
-            <p>In today's hyper-connected workplace, the temptation to use technology to appear more productive than we actually are has never been stronger. With remote work becoming the norm, many have sought ways to game the system—keeping their status "active" while they step away from their desks for extended periods.</p>
+            <p>Today we're diving deep into React's useState and useEffect hooks, exploring how they can be used to create more efficient and maintainable components.</p>
             
-            <p>But what does this behavior say about our work culture? And more importantly, what does it say about us as professionals?</p>
-            
-            <div class="blog-image">
-                [Image: A person juggling work and life balance]
+            <div class="code-block">
+                <pre>
+const [count, setCount] = useState(0);
+
+useEffect(() => {
+    document.title = `Count: ${count}`;
+}, [count]);</pre>
             </div>
             
-            <h2>The Illusion of Productivity</h2>
+            <h2>Understanding useState</h2>
             
-            <p>Tools that simulate activity—keeping your mouse moving or your screen from going to sleep while you're away—might seem like harmless hacks. After all, who hasn't needed a mental break during a long workday? But there's a fundamental dishonesty in presenting yourself as "working" when you're not.</p>
+            <p>The useState hook is fundamental to managing state in functional components. Let's explore some advanced patterns and best practices.</p>
             
-            <p>Consider this: if you feel the need to appear busier than you are, there might be deeper issues at play in your workplace. Perhaps unrealistic expectations or a culture of presenteeism that values the appearance of work over actual output.</p>
-            
-            <blockquote>
-                "The measure of success isn't how long you stay online, but what you accomplish while you're there." — Anonymous
-            </blockquote>
-            
-            <h2>The Real Cost of Fake Work</h2>
-            
-            <p>Using tools to simulate activity might seem like a victimless crime, but consider the ripple effects. Colleagues waiting for your input might assume you're available when you're not. Teams may develop unrealistic expectations about how quickly work can be completed if they believe you've been working continuously.</p>
-            
-            <p>Moreover, there's a personal cost. The mental gymnastics required to maintain these deceptions takes energy that could be better spent on meaningful work or genuine rest. The constant anxiety of being "caught" creates unnecessary stress.</p>
-            
-            <div class="blog-image">
-                [Image: Chart showing productivity vs. hours worked]
+            <div class="code-block">
+                <pre>
+function Counter() {
+    const [count, setCount] = useState(0);
+    
+    const increment = () => {
+        setCount(prev => prev + 1);
+    };
+    
+    return (
+        <button onClick={increment}>
+            Count: {count}
+        </button>
+    );
+}</pre>
             </div>
             
-            <h2>A Better Approach: Honest Productivity</h2>
+            <h2>Custom Hooks</h2>
             
-            <p>Instead of focusing on appearing busy, what if we shifted our attention to actual accomplishments? Here are some alternatives to consider:</p>
+            <p>Creating custom hooks allows us to extract component logic into reusable functions. Here's an example of a custom hook for handling form state:</p>
             
-            <p><strong>1. Negotiate reasonable expectations.</strong> If you feel the need to fake activity, it might be time for a frank conversation about workload and expectations with your manager.</p>
-            
-            <p><strong>2. Take intentional breaks.</strong> Research shows that scheduled breaks actually improve productivity. Be transparent about when you're stepping away, and make the most of your working time.</p>
-            
-            <p><strong>3. Focus on deliverables, not hours.</strong> Work with your team to establish clear deliverables and deadlines, rather than focusing on hours logged or constant availability.</p>
-            
-            <p><strong>4. Practice deep work.</strong> Instead of spreading your attention thinly across a long day, consider dedicating shorter periods to intense, focused work without distractions.</p>
-            
-            <h2>The Ethics of Digital Presence</h2>
-            
-            <p>As our work lives become increasingly digital, we need to develop new ethical frameworks for online behavior. Just as we wouldn't place a cardboard cutout of ourselves in a physical office while we go to the movies, we shouldn't create digital facsimiles to mask our absence.</p>
-            
-            <p>Trust is the foundation of any healthy work relationship. Once broken, it's difficult to rebuild. Is keeping your Teams status green really worth that risk?</p>
-            
-            <blockquote>
-                "Integrity is doing the right thing, even when no one is watching." — C.S. Lewis
-            </blockquote>
-            
-            <h2>Finding Balance in a Digital World</h2>
-            
-            <p>The irony isn't lost on me—an article about the ethics of fake work activity, published on a page that could potentially be used for exactly that purpose. But my hope is that rather than using technology to create illusions, we can use it to foster genuine productivity and well-being.</p>
-            
-            <p>Technology should serve us, not become a tool for deception. The most valuable asset in any workplace isn't the appearance of productivity, but actual engagement, creativity, and contribution.</p>
-            
-            <p>So the next time you're tempted to simulate work activity, ask yourself: wouldn't your energy be better spent either doing meaningful work or taking a genuine, restorative break?</p>
-            
-            <p>Your career, your colleagues, and your conscience will thank you.</p>
-            
-            <div class="blog-image">
-                [Image: Person relaxing after productive work session]
+            <div class="code-block">
+                <pre>
+function useFormInput(initialValue) {
+    const [value, setValue] = useState(initialValue);
+    
+    const handleChange = e => {
+        setValue(e.target.value);
+    };
+    
+    return {
+        value,
+        onChange: handleChange
+    };
+}</pre>
             </div>
             
-            <h2>Conclusion: The Path Forward</h2>
+            <h2>Performance Optimization</h2>
             
-            <p>As we navigate the evolving landscape of remote and hybrid work, let's commit to bringing our authentic selves to our digital workplaces. Let's measure success not by our online status indicators, but by the value we create, the problems we solve, and the way we support our colleagues.</p>
+            <p>React's useCallback and useMemo hooks can help optimize performance by memoizing functions and values:</p>
             
-            <p>After all, at the end of the day, it's not about how busy you looked, but what you actually accomplished that matters.</p>
+            <div class="code-block">
+                <pre>
+const memoizedCallback = useCallback(
+    () => {
+        doSomething(a, b);
+    },
+    [a, b],
+);</pre>
+            </div>
             
-            <p>What are your thoughts on digital presenteeism? Have you ever felt pressured to appear more active online than you actually were? Share your experiences in the comments below.</p>
+            <h2>Advanced Patterns</h2>
+            
+            <p>Let's look at some advanced patterns for managing complex state:</p>
+            
+            <div class="code-block">
+                <pre>
+function reducer(state, action) {
+    switch (action.type) {
+        case 'increment':
+            return { count: state.count + 1 };
+        case 'decrement':
+            return { count: state.count - 1 };
+        default:
+            throw new Error();
+    }
+}</pre>
+            </div>
         </div>
     </div>
     
@@ -435,6 +450,7 @@
                 behavior: 'smooth'
             });
             
+            // This only affects the current webpage
             log(`Mouse moved to (${randomX}, ${randomY})`);
         }
         
