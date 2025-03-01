@@ -6,7 +6,7 @@ A demonstration of a web-based activity simulator with an ethical discussion blo
 This is a demonstration only. Using tools to simulate activity during work hours may violate workplace policies.
 
 ## 🌐 Live Demo
-Visit the live demo at: https://[Looper-1].github.io/activity-simulator-demo
+Visit the live demo at: https://phanindrasai27.github.io/MOUSIM
 
 ## 🛠️ Features
 - Activity simulation (mouse movement and scrolling)
