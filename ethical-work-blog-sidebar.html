@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Ethics Today | The Digital Worker's Guide</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        .sidebar {
+            position: fixed;
+            height: 100%;
+            width: 320px;
+            right: -320px;
+            top: 0;
+            background-color: #fff;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .sidebar.open {
+            right: 0;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .control-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+        
+        .btn-start {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-start:hover {
+            background-color: #3e8e41;
+        }
+        
+        .btn-stop {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .btn-stop:hover {
+            background-color: #d32f2f;
+        }
+        
+        .status-indicator {
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .status-active {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .status-inactive {
+            background-color: #ffcdd2;
+            color: #c62828;
+        }
+        
+        .log-section {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #eee;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        
+        .toggle-sidebar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #555;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            font-size: 1.5rem;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-sidebar:hover {
+            background-color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            transition: margin-right 0.3s ease;
+        }
+        
+        .container.sidebar-open {
+            margin-right: 320px;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .blog-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .blog-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .blog-meta {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        
+        .blog-content h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #444;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .blog-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .blog-content blockquote {
+            border-left: 4px solid #ccc;
+            padding-left: 20px;
+            margin-left: 0;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 300px;
+            background-color: #eee;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .container.sidebar-open {
+                margin-right: 0;
+                opacity: 0.3;
+            }
+            
+            .blog-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-banner" style="background: #fff3cd; color: #856404; padding: 10px; margin-bottom: 20px; border-radius: 4px;">
+        ⚠️ Warning: This is a demonstration only. Using tools to simulate activity during work hours may violate workplace policies.
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Activity Controls</div>
+            <button class="close-sidebar" id="closeSidebar">&times;</button>
+        </div>
+        
+        <div class="control-section">
+            <div class="status-indicator status-inactive" id="statusIndicator">Status: INACTIVE</div>
+            
+            <div class="control-group">
+                <label for="activityType">Activity Type:</label>
+                <select id="activityType">
+                    <option value="scroll">Scrolling</option>
+                    <option value="mouse">Mouse Movement</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="intervalInput">Interval (seconds):</label>
+                <input type="number" id="intervalInput" min="5" max="60" value="15">
+            </div>
+            
+            <button id="startBtn" class="btn btn-start">Start Activity</button>
+            <button id="stopBtn" class="btn btn-stop" disabled>Stop Activity</button>
+        </div>
+        
+        <div class="control-section">
+            <div class="section-title">Activity Log</div>
+            <div class="log-section" id="logEntries"></div>
+        </div>
+    </div>
+    
+    <div class="toggle-sidebar" id="toggleSidebar">⚙️</div>
+    
+    <div class="container" id="container">
+        <div class="blog-header">
+            <h1 class="blog-title">The Ethical Worker's Guide to Productivity</h1>
+            <div class="blog-subtitle">Finding the balance between productivity tools and genuine work</div>
+            <div class="blog-meta">Posted on March 1, 2025 by Alex Johnson • 12 min read</div>
+        </div>
+        
+        <div class="blog-content">
+            <p>In today's hyper-connected workplace, the temptation to use technology to appear more productive than we actually are has never been stronger. With remote work becoming the norm, many have sought ways to game the system—keeping their status "active" while they step away from their desks for extended periods.</p>
+            
+            <p>But what does this behavior say about our work culture? And more importantly, what does it say about us as professionals?</p>
+            
+            <div class="blog-image">
+                [Image: A person juggling work and life balance]
+            </div>
+            
+            <h2>The Illusion of Productivity</h2>
+            
+            <p>Tools that simulate activity—keeping your mouse moving or your screen from going to sleep while you're away—might seem like harmless hacks. After all, who hasn't needed a mental break during a long workday? But there's a fundamental dishonesty in presenting yourself as "working" when you're not.</p>
+            
+            <p>Consider this: if you feel the need to appear busier than you are, there might be deeper issues at play in your workplace. Perhaps unrealistic expectations or a culture of presenteeism that values the appearance of work over actual output.</p>
+            
+            <blockquote>
+                "The measure of success isn't how long you stay online, but what you accomplish while you're there." — Anonymous
+            </blockquote>
+            
+            <h2>The Real Cost of Fake Work</h2>
+            
+            <p>Using tools to simulate activity might seem like a victimless crime, but consider the ripple effects. Colleagues waiting for your input might assume you're available when you're not. Teams may develop unrealistic expectations about how quickly work can be completed if they believe you've been working continuously.</p>
+            
+            <p>Moreover, there's a personal cost. The mental gymnastics required to maintain these deceptions takes energy that could be better spent on meaningful work or genuine rest. The constant anxiety of being "caught" creates unnecessary stress.</p>
+            
+            <div class="blog-image">
+                [Image: Chart showing productivity vs. hours worked]
+            </div>
+            
+            <h2>A Better Approach: Honest Productivity</h2>
+            
+            <p>Instead of focusing on appearing busy, what if we shifted our attention to actual accomplishments? Here are some alternatives to consider:</p>
+            
+            <p><strong>1. Negotiate reasonable expectations.</strong> If you feel the need to fake activity, it might be time for a frank conversation about workload and expectations with your manager.</p>
+            
+            <p><strong>2. Take intentional breaks.</strong> Research shows that scheduled breaks actually improve productivity. Be transparent about when you're stepping away, and make the most of your working time.</p>
+            
+            <p><strong>3. Focus on deliverables, not hours.</strong> Work with your team to establish clear deliverables and deadlines, rather than focusing on hours logged or constant availability.</p>
+            
+            <p><strong>4. Practice deep work.</strong> Instead of spreading your attention thinly across a long day, consider dedicating shorter periods to intense, focused work without distractions.</p>
+            
+            <h2>The Ethics of Digital Presence</h2>
+            
+            <p>As our work lives become increasingly digital, we need to develop new ethical frameworks for online behavior. Just as we wouldn't place a cardboard cutout of ourselves in a physical office while we go to the movies, we shouldn't create digital facsimiles to mask our absence.</p>
+            
+            <p>Trust is the foundation of any healthy work relationship. Once broken, it's difficult to rebuild. Is keeping your Teams status green really worth that risk?</p>
+            
+            <blockquote>
+                "Integrity is doing the right thing, even when no one is watching." — C.S. Lewis
+            </blockquote>
+            
+            <h2>Finding Balance in a Digital World</h2>
+            
+            <p>The irony isn't lost on me—an article about the ethics of fake work activity, published on a page that could potentially be used for exactly that purpose. But my hope is that rather than using technology to create illusions, we can use it to foster genuine productivity and well-being.</p>
+            
+            <p>Technology should serve us, not become a tool for deception. The most valuable asset in any workplace isn't the appearance of productivity, but actual engagement, creativity, and contribution.</p>
+            
+            <p>So the next time you're tempted to simulate work activity, ask yourself: wouldn't your energy be better spent either doing meaningful work or taking a genuine, restorative break?</p>
+            
+            <p>Your career, your colleagues, and your conscience will thank you.</p>
+            
+            <div class="blog-image">
+                [Image: Person relaxing after productive work session]
+            </div>
+            
+            <h2>Conclusion: The Path Forward</h2>
+            
+            <p>As we navigate the evolving landscape of remote and hybrid work, let's commit to bringing our authentic selves to our digital workplaces. Let's measure success not by our online status indicators, but by the value we create, the problems we solve, and the way we support our colleagues.</p>
+            
+            <p>After all, at the end of the day, it's not about how busy you looked, but what you actually accomplished that matters.</p>
+            
+            <p>What are your thoughts on digital presenteeism? Have you ever felt pressured to appear more active online than you actually were? Share your experiences in the comments below.</p>
+        </div>
+    </div>
+    
+    <script>
+        let activityInterval;
+        const sidebar = document.getElementById('sidebar');
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const container = document.getElementById('container');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const activityTypeSelect = document.getElementById('activityType');
+        const intervalInput = document.getElementById('intervalInput');
+        const logEntries = document.getElementById('logEntries');
+        
+        // Toggle sidebar
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            container.classList.toggle('sidebar-open');
+        });
+        
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            container.classList.remove('sidebar-open');
+        });
+        
+        function log(message) {
+            const now = new Date();
+            const timestamp = now.toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${timestamp}] ${message}`;
+            logEntries.prepend(entry);
+            
+            // Limit log entries
+            if (logEntries.children.length > 50) {
+                logEntries.removeChild(logEntries.lastChild);
+            }
+        }
+        
+        function simulateMouseMovement() {
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 100;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            window.scrollTo({
+                top: randomY,
+                left: randomX,
+                behavior: 'smooth'
+            });
+            
+            log(`Mouse moved to (${randomX}, ${randomY})`);
+        }
+        
+        function simulateScrolling() {
+            const contentHeight = document.body.scrollHeight;
+            const viewportHeight = window.innerHeight;
+            const maxScroll = contentHeight - viewportHeight;
+            
+            // Generate a random scroll position that makes sense
+            const randomScroll = Math.floor(Math.random() * maxScroll);
+            
+            window.scrollTo({
+                top: randomScroll,
+                behavior: 'smooth'
+            });
+            
+            log(`Scrolled to position ${randomScroll}px`);
+        }
+        
+        function performRandomActivity() {
+            const activityType = activityTypeSelect.value;
+            
+            if (activityType === 'mouse') {
+                simulateMouseMovement();
+            } else if (activityType === 'scroll') {
+                simulateScrolling();
+            } else if (activityType === 'both') {
+                if (Math.random() > 0.5) {
+                    simulateMouseMovement();
+                } else {
+                    simulateScrolling();
+                }
+            }
+        }
+        
+        function startActivity() {
+            const intervalSeconds = parseInt(intervalInput.value, 10);
+            if (isNaN(intervalSeconds) || intervalSeconds < 5 || intervalSeconds > 60) {
+                alert('Please enter a valid interval between 5 and 60 seconds');
+                return;
+            }
+            
+            // Perform activity immediately
+            performRandomActivity();
+            
+            // Set up recurring activity
+            activityInterval = setInterval(performRandomActivity, intervalSeconds * 1000);
+            
+            // Update UI
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            statusIndicator.textContent = 'Status: ACTIVE';
+            statusIndicator.className = 'status-indicator status-active';
+            
+            log(`Started activity simulation (${intervalSeconds}s intervals)`);
+        }
+        
+        function stopActivity() {
+            clearInterval(activityInterval);
+            
+            // Update UI
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            statusIndicator.textContent = 'Status: INACTIVE';
+            statusIndicator.className = 'status-indicator status-inactive';
+            
+            log('Stopped activity simulation');
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', startActivity);
+        stopBtn.addEventListener('click', stopActivity);
+        
+        // Initial log message
+        log('Page loaded - ready to simulate activity');
+    </script>
+</body>
+</html>
